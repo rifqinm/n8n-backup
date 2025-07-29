@@ -25,28 +25,35 @@ docker run --rm `
   -v n8n_n8n_data:/data `
   -v "C:/Users/WIN10/OneDrive/Documents/App/App - n8n/n8n/backup_n8n:/backup" `
   alpine sh -c "cp -r /data/* /backup"
+```
 📦 Hasil backup akan disimpan di folder backup_n8n.
 
 ♻️ Restore (Folder → Volume)
 Restore data ke dalam volume Docker dari folder backup:
-
+```
 docker run --rm `
   -v n8n_n8n_data:/data `
   -v "${PWD}/backup_n8n:/backup" `
   alpine sh -c "cp -r /backup/* /data"
+```
 Restart Docker Compose agar n8n memuat ulang data:
-
+```
 docker compose down
 docker compose up -d
+```
 🔐 Fix Permission (WAJIB setelah restore)
 Jika muncul error seperti EACCES: permission denied, lakukan perbaikan permission:
-
+```
 docker run --rm -it -v n8n_n8n_data:/data alpine sh
+```
 Di dalam container:
-
+```
 chown -R 1000:1000 /data
 chmod -R u+rwX /data
+```
+```
 exit
+```
 Kemudian jalankan ulang:
-
+```
 docker compose up -d
