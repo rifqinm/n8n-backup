@@ -13,8 +13,6 @@ n8n/
 └── README.md
 
 yaml
-Salin
-Edit
 
 ---
 
@@ -32,38 +30,23 @@ docker run --rm `
 ♻️ Restore (Folder → Volume)
 Restore data ke dalam volume Docker dari folder backup:
 
-powershell
-Salin
-Edit
 docker run --rm `
   -v n8n_n8n_data:/data `
   -v "${PWD}/backup_n8n:/backup" `
   alpine sh -c "cp -r /backup/* /data"
 Restart Docker Compose agar n8n memuat ulang data:
 
-powershell
-Salin
-Edit
 docker compose down
 docker compose up -d
 🔐 Fix Permission (WAJIB setelah restore)
 Jika muncul error seperti EACCES: permission denied, lakukan perbaikan permission:
 
-powershell
-Salin
-Edit
 docker run --rm -it -v n8n_n8n_data:/data alpine sh
 Di dalam container:
 
-sh
-Salin
-Edit
 chown -R 1000:1000 /data
 chmod -R u+rwX /data
 exit
 Kemudian jalankan ulang:
 
-powershell
-Salin
-Edit
 docker compose up -d
