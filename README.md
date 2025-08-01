@@ -5,12 +5,13 @@ Backup & restore workflow sederhana untuk `n8n` self-hosted yang dijalankan via 
 ---
 
 ## 📁 Struktur Direktori
-
+```text
 n8n/
 ├── docker-compose.yml
 ├── backup_n8n/ # Folder untuk menyimpan hasil backup
 ├── n8n_data/ (optional) # Jika pakai bind mount lokal
 └── README.md
+```
 
 yaml
 
